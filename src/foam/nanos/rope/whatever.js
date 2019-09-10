@@ -7,6 +7,7 @@
 foam.CLASS({
   package: 'foam.nsnos.rope',
   name: 'whatever',
+  documentation: 'model represents a single cell in a rope matrix',
 
   properties: [
     {
