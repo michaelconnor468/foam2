@@ -259,6 +259,9 @@ var classes = [
   'foam.nanos.menu.SubMenuView',
   'foam.nanos.menu.TabsMenu',
   'foam.nanos.menu.ViewMenu',
+  // Rope
+  'foam.nanos.rope.RelationshipAuthorizationMatrixCell',
+  
   'foam.comics.v2.CannedQuery',
   'foam.comics.v2.namedViews.NamedViewCollection',
   'foam.comics.v2.namedViews.NamedViewInstance',
