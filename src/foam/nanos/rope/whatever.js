@@ -6,7 +6,7 @@
 
 foam.CLASS({
   package: 'foam.nanos.rope',
-  name: 'whatever',
+  name: 'relationshipAuthorizationMatrixCell',
   documentation: 'model represents a single cell in a rope matrix',
 
   properties: [
