@@ -27,7 +27,7 @@ public class ROPEAuthorizer implements Authorizer {
     ropeDAO = x.get("ropeDAO");
   }
 
-  public void findRelationship(X x, FObject obj) {
+  public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj) {
     List<RelationshipAuthorizationMatrixCell> ropes = (List<RelationshipAuthorizationMatrixCell>) ((ArraySink) ropeDAO 
       .where(
         EQ(RelationshipAuthorizationMatrixCell.TARGET_MODEL, obj.getClassInfo().getId())
