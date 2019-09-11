@@ -20,7 +20,7 @@ foam.CLASS({
     },
     {
       name: 'junctionDAOKey',
-      class: 'foam.dao.DAOProperty'
+      class: 'String'
     },
     {
       name: 'sourceDAOKey',
