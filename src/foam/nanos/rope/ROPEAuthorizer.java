@@ -61,7 +61,10 @@ public class ROPEAuthorizer implements Authorizer {
 
   public boolean isAuthorized(X x, FObject obj, char column) {
     List<RelationshipAuthorizationMatrixCell> searchList = findRelationship(x, obj, column);
+    for (RelationshipAuthorizationMatrixCell cell : searchList) {
 
+    }
+    return false;
   }
 
   public boolean checkGlobalRead(X x) {
