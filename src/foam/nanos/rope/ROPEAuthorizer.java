@@ -13,7 +13,6 @@ import foam.dao.ArraySink;
 import foam.nanos.auth.AuthService;
 import foam.nanos.auth.AuthorizationException;
 import foam.nanos.auth.User;
-import foam.nanos.rope.RelationshipAuthorizationMatrixCell;
 import java.util.List;
 import static foam.mlang.MLang.*;
 
