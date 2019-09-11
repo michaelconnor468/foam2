@@ -22,7 +22,7 @@ public class ROPEAuthorizer implements Authorizer {
   protected User user;
   protected DAO relationshipAuthorizationCellDAO;
 
-  public ROPEAuthorizer() {
+  public ROPEAuthorizer(X x) {
     user = (User) x.get("user");
     ropeDAO = x.get("ropeDAO");
   }
