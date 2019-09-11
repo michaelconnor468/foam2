@@ -24,7 +24,7 @@ foam.CLASS({
     },
     {
       name: 'sourceDAOKey',
-      class: 'foam.dao.DAOProperty'
+      class: 'String'
     },
     {
       name: 'checked',
