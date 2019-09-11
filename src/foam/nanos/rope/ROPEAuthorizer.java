@@ -41,8 +41,6 @@ public class ROPEAuthorizer implements Authorizer {
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
 
-
-
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
@@ -51,6 +49,10 @@ public class ROPEAuthorizer implements Authorizer {
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
 
+  }
+
+  public boolean isAuthorizedSearch(X x, FObject obj, char column) {
+    List<RelationshipAuthorizationMatrixCell> searchList = findRelationship(x, obj, column);
   }
 
   public boolean checkGlobalRead(X x) {
