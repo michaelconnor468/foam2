@@ -36,22 +36,30 @@ public class ROPEAuthorizer implements Authorizer {
   }
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
-
+    if ( ! isAuthorized(x, obj, 'C') ) {
+      throw new AuthorizationException();
+    }
   }
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
-
+    if ( ! isAuthorized(x, obj, 'R') ) {
+      throw new AuthorizationException();
+    }
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
-
+    if ( ! isAuthorized(x, obj, 'U') ) {
+      throw new AuthorizationException();
+    }
   }
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
-
+    if ( ! isAuthorized(x, obj, 'D') ) {
+      throw new AuthorizationException();
+    }
   }
 
-  public boolean isAuthorizedSearch(X x, FObject obj, char column) {
+  public boolean isAuthorized(X x, FObject obj, char column) {
     List<RelationshipAuthorizationMatrixCell> searchList = findRelationship(x, obj, column);
   }
 
