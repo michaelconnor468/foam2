@@ -27,7 +27,7 @@ public class ROPEAuthorizer implements Authorizer {
   public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj, char column) {
     List<RelationshipAuthorizationMatrixCell> ropes = (List<RelationshipAuthorizationMatrixCell>) ((ArraySink) ropeDAO 
       .where(
-        EQ(RelationshipAuthorizationMatrixCell.TARGET_MODEL, obj.getClassInfo().getId())
+        EQ(RelationshipAuthorizationMatrixCell.TARGET_MODEL, obj.getClassInfo().getId()),
         EQ(RelationshipAuthorizationMatrixCell.CHECKED, true), 
         EQ(RelationshipAuthorizationMatrixCell.COLUMN, column)
       )
@@ -61,6 +61,7 @@ public class ROPEAuthorizer implements Authorizer {
 
   public boolean isAuthorized(X x, FObject obj, char column) {
     List<RelationshipAuthorizationMatrixCell> searchList = findRelationship(x, obj, column);
+
   }
 
   public boolean checkGlobalRead(X x) {
