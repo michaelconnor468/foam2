@@ -36,7 +36,7 @@ foam.CLASS({
     },
     {
       name: 'row',
-      class: 'Int'
+      class: 'String'
     }
   ]
 })
