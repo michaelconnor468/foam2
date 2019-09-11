@@ -623,7 +623,7 @@ p({
 })
 p({
   "class":"foam.nanos.boot.NSpec",
-  "name":"relationshipAuthorizationCellsDAO",
+  "name":"relationshipAuthorizationCellDAO",
   "lazy":false,
   "description":"holds relationship authorization matrix cells which form the relational permissions graph structure used in authentication",
   "serve":false,
