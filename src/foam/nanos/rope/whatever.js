@@ -13,6 +13,10 @@ foam.CLASS({
     {
       name: 'sourceModel',
       class: 'String'
+    }, 
+    {
+      name: 'targetModel',
+      class: 'String'
     },
     {
       name: 'junctionDAOKey',
