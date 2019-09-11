@@ -12,7 +12,7 @@ foam.CLASS({
   properties: [
     {
       name: 'sourceModel',
-      class: 'foam.core.FObject'
+      class: 'String'
     },
     {
       name: 'junctionDAOKey',
