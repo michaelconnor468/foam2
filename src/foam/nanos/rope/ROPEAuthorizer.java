@@ -10,9 +10,7 @@ import foam.core.FObject;
 import foam.core.X;
 import foam.dao.DAO;
 import foam.dao.ArraySink;
-import foam.nanos.auth.AuthService;
-import foam.nanos.auth.AuthorizationException;
-import foam.nanos.auth.User;
+import foam.nanos.auth.*;
 import java.util.List;
 import static foam.mlang.MLang.*;
 
@@ -26,11 +24,12 @@ public class ROPEAuthorizer implements Authorizer {
     ropeDAO = x.get("ropeDAO");
   }
 
-  public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj) {
+  public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj, char column) {
     List<RelationshipAuthorizationMatrixCell> ropes = (List<RelationshipAuthorizationMatrixCell>) ((ArraySink) ropeDAO 
       .where(
         EQ(RelationshipAuthorizationMatrixCell.TARGET_MODEL, obj.getClassInfo().getId())
         EQ(RelationshipAuthorizationMatrixCell.CHECKED, true), 
+        EQ(RelationshipAuthorizationMatrixCell.COLUMN, column)
       )
       .select(new ArraySink()))
       .getArray();
