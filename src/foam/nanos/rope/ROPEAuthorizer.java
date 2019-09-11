@@ -24,7 +24,7 @@ public class ROPEAuthorizer implements Authorizer {
     ropeDAO = x.get("ropeDAO");
   }
 
-  public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj, char column) {
+  public List<RelationshipAuthorizationMatrixCell> findRelationship(X x, FObject obj, String column) {
     List<RelationshipAuthorizationMatrixCell> ropes = (List<RelationshipAuthorizationMatrixCell>) ((ArraySink) ropeDAO 
       .where(
         EQ(RelationshipAuthorizationMatrixCell.TARGET_MODEL, obj.getClassInfo().getId()),
@@ -36,30 +36,30 @@ public class ROPEAuthorizer implements Authorizer {
   }
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
-    if ( ! isAuthorized(x, obj, 'C') ) {
+    if ( ! isAuthorized(x, obj, "C") ) {
       throw new AuthorizationException();
     }
   }
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
-    if ( ! isAuthorized(x, obj, 'R') ) {
+    if ( ! isAuthorized(x, obj, "R") ) {
       throw new AuthorizationException();
     }
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
-    if ( ! isAuthorized(x, obj, 'U') ) {
+    if ( ! isAuthorized(x, obj, "U") ) {
       throw new AuthorizationException();
     }
   }
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
-    if ( ! isAuthorized(x, obj, 'D') ) {
+    if ( ! isAuthorized(x, obj, "D") ) {
       throw new AuthorizationException();
     }
   }
 
-  public boolean isAuthorized(X x, FObject obj, char column) {
+  public boolean isAuthorized(X x, FObject obj, String column) {
     List<RelationshipAuthorizationMatrixCell> searchList = findRelationship(x, obj, column);
     for (RelationshipAuthorizationMatrixCell cell : searchList) {
 

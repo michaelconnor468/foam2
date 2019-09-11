@@ -32,7 +32,7 @@ foam.CLASS({
     },
     {
       name: 'column',
-      class: 'Char'
+      class: 'String'
     },
     {
       name: 'row',
