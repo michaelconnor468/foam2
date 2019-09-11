@@ -630,7 +630,7 @@ p({
   "servicescript":
   """
     return new foam.dao.EasyDAO.Builder(x)
-      .setOf(foam.nanos.rope.relationshipAuthorizationDAO)
+      .setOf(foam.nanos.rope.RelationshipAuthorizationMatrixCell)
       .build();
   """
 })
