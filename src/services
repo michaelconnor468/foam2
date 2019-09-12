@@ -606,11 +606,14 @@ p({
   "name":"ropeDAO",
   "lazy":false,
   "serve":true,
-  "description":"holds relationship authorization matrix cells which form the relational permissions graph structure used in authentication",
-  "servicescript":
+  "serviceScript":
   """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.ROPEMatrixCell.getOwnClassInfo())
+      .setJournalType(foam.dao.JournalType.SINGLE_JOURNAL)
+      .setJournalName("ropes")
+      .setAuthorize(false)
       .build();
-  """
+  """,
+  "client":"{\"of\": \"foam.nanos.rope.ROPEMatrixCell\"}"
 })
