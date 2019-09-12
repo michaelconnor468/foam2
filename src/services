@@ -600,7 +600,6 @@ p({
     "class": "foam.nanos.geocode.GoogleMapsCredentials"
   }
 })
-
 p({
   "class":"foam.nanos.boot.NSpec",
   "name":"ropeDAO",

@@ -210,7 +210,6 @@ var classes = [
   'foam.nanos.auth.email.ClientEmailDocService',
   'foam.nanos.auth.resetPassword.ResetPasswordTokenService',
   'foam.nanos.auth.PreventDuplicateEmailDAO',
-  'foam.nanos.auth.PermissionedPropertyDAO',
   'foam.nanos.auth.SystemAuthService',
   'foam.nanos.auth.HidePropertiesSink',
   'foam.nanos.auth.ServiceProvider',
@@ -260,6 +259,9 @@ var classes = [
   'foam.nanos.menu.SubMenuView',
   'foam.nanos.menu.TabsMenu',
   'foam.nanos.menu.ViewMenu',
+  // Rope
+  'foam.nanos.rope.RelationshipAuthorizationMatrixCell',
+  
   'foam.comics.v2.CannedQuery',
   'foam.comics.v2.namedViews.NamedViewCollection',
   'foam.comics.v2.namedViews.NamedViewInstance',
