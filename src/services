@@ -600,3 +600,17 @@ p({
     "class": "foam.nanos.geocode.GoogleMapsCredentials"
   }
 })
+
+p({
+  "class":"foam.nanos.boot.NSpec",
+  "name":"ropeDAO",
+  "lazy":false,
+  "serve":true,
+  "description":"holds relationship authorization matrix cells which form the relational permissions graph structure used in authentication",
+  "servicescript":
+  """
+    return new foam.dao.EasyDAO.Builder(x)
+      .setOf(foam.nanos.rope.ROPEMatrixCell.getOwnClassInfo())
+      .build();
+  """
+})
