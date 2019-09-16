@@ -12,13 +12,17 @@ import foam.nanos.auth.AuthService;
 import foam.nanos.auth.AuthorizationException;
 import foam.nanos.auth.Authorizer;
 import foam.nanos.auth.User;
+import java.util.List;
+import java.util.ArrayList;
+import foam.nanos.rope.ROPECell;
 
 public class ROPEAuthorizer implements Authorizer {
 
-  User user;
+  protected User user_;
+  protected List<FObject> authorizedSet;
 
   public ROPEAuthorizer(X x) {
-    user = (User) x.get("user");
+    user_ = (User) x.get("user");
   }
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
@@ -41,8 +45,24 @@ public class ROPEAuthorizer implements Authorizer {
     if ( ! relationshipTreeSearch(targetModel, "D") ) throw new AuthorizationException("You don't have permission to create this object");
   }
 
-  public boolean relationshipTreeSearch(String targetModel, String operation) {
-    return false;
+  /**
+   * 
+   * 
+   * @param searchList - list of all columns consisting of only checked ropecell boxes for a particular model
+   */
+  public void getAuthorizedSet(List<List<ROPECell>> searchList) {
+    String sourceModel = null;
+
+    for ( List<ROPECell> column : searchList ) {
+      sourceModel = column.get(0).getSourceModel();
+      for ( ROPECell cell : column ) {
+
+      }
+    }
+  }
+
+  public boolean populateAuthorizedSet(ROPECell searchList, String searchModel, String operation) {
+
   }
 
   public boolean checkGlobalRead(X x) {
