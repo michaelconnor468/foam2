@@ -63,6 +63,7 @@ public class ROPEAuthorizer implements Authorizer {
 
     for ( ROPECell cell : searchList ) {
       sourceModel = cell.getSourceModel();
+      relationshipDAO = x.get(cell.getJunctionDAOKey() != null ? cell.getJuncctionDAOKey() : cell.getSourceDAOKey());
 
     }
   }
