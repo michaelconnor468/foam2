@@ -8,6 +8,7 @@ package foam.nanos.rope;
 
 import foam.core.FObject;
 import foam.core.X;
+import foam.dao.DAO;
 import foam.nanos.auth.AuthService;
 import foam.nanos.auth.AuthorizationException;
 import foam.nanos.auth.Authorizer;
@@ -15,6 +16,7 @@ import foam.nanos.auth.User;
 import java.util.List;
 import java.util.ArrayList;
 import foam.nanos.rope.ROPECell;
+import static foam.mlang.MLang.*;
 
 public class ROPEAuthorizer implements Authorizer {
 
@@ -45,21 +47,23 @@ public class ROPEAuthorizer implements Authorizer {
     if ( ! relationshipTreeSearch(targetModel, "D") ) throw new AuthorizationException("You don't have permission to create this object");
   }
 
+  public List<ROPECell> getMatrixColumns(X x, String targetModel) {
+    DAO ropeDAO = x.get("ropeDAO");
+    return ropeDAO.where(EQ(targetModel, ropeDAO.TARGET_MODEL)).select();
+  }
+
   /**
    * Checks to see if the current user is authorized to perform a particular action
    * 
    * @param searchList - list of all columns for a particular model
    */
-  public boolean checkAuthorize(List<List<ROPECell>> searchList) {
+  public boolean checkAuthorize(X x, List<ROPECell> searchList) {
     String sourceModel = null;
     DAO relationshipDAO = null;
 
-    for ( List<ROPECell> column : searchList ) {
-      sourceModel = column.get(0).getSourceModel();
-      for ( ROPECell cell : column ) {
-        if ( ! cell.getChecked() ) continue;
-        relationshipDAO = x.get(cell.getJunctionDAOKey() != null ? cell.getJuncctionDAOKey() : cell.getSourceDAOKey());
-      }
+    for ( ROPECell cell : searchList ) {
+      sourceModel = cell.getSourceModel();
+
     }
   }
 
