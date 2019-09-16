@@ -46,23 +46,25 @@ public class ROPEAuthorizer implements Authorizer {
   }
 
   /**
+   * Checks to see if the current user is authorized to perform a particular action
    * 
-   * 
-   * @param searchList - list of all columns consisting of only checked ropecell boxes for a particular model
+   * @param searchList - list of all columns for a particular model
    */
-  public void getAuthorizedSet(List<List<ROPECell>> searchList) {
+  public boolean checkAuthorize(List<List<ROPECell>> searchList) {
     String sourceModel = null;
+    DAO relationshipDAO = null;
 
     for ( List<ROPECell> column : searchList ) {
       sourceModel = column.get(0).getSourceModel();
       for ( ROPECell cell : column ) {
-
+        if ( ! cell.getChecked() ) continue;
+        relationshipDAO = x.get(cell.getJunctionDAOKey() != null ? cell.getJuncctionDAOKey() : cell.getSourceDAOKey());
       }
     }
   }
 
-  public boolean populateAuthorizedSet(ROPECell searchList, String searchModel, String operation) {
-
+  public boolean recursiveFind(FObject searchStartObject, FObject searchTarget) {
+    return false;
   }
 
   public boolean checkGlobalRead(X x) {
