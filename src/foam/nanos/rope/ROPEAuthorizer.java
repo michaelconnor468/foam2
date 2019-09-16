@@ -47,9 +47,16 @@ public class ROPEAuthorizer implements Authorizer {
     if ( ! relationshipTreeSearch(targetModel, "D") ) throw new AuthorizationException("You don't have permission to create this object");
   }
 
-  public List<ROPECell> getMatrixColumns(X x, String targetModel) {
+  public List<ROPECell> getMatrixColumns(X x, String operation) {
     DAO ropeDAO = x.get("ropeDAO");
-    return ropeDAO.where(EQ(targetModel, ropeDAO.TARGET_MODEL)).select();
+    return ropeDAO .where(
+      AND(
+        EQ(ropeDAO.IS_RELATIONSHIP, true),
+        EQ(ropeDAO.COLUMN, operation),
+        EQ(ropeDAO.TARGET_MODEL, user_),
+        EQ(ropeDAO.CHECKED, true)
+      )
+    );
   }
 
   /**
