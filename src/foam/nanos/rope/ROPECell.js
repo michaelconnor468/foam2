@@ -30,6 +30,10 @@ foam.CLASS({
       class: 'String'
     }, 
     {
+      name: 'reverseRelationship',
+      class: 'String'
+    },
+    {
       name: 'targetModel',
       class: 'String'
     },
