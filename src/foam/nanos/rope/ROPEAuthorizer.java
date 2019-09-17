@@ -49,9 +49,8 @@ public class ROPEAuthorizer implements Authorizer {
 
   public List<ROPECell> getMatrixColumns(X x, String operation) {
     DAO ropeDAO = x.get("ropeDAO");
-    return ropeDAO .where(
+    return ropeDAO.where(
       AND(
-        EQ(ropeDAO.IS_RELATIONSHIP, true),
         EQ(ropeDAO.COLUMN, operation),
         EQ(ropeDAO.TARGET_MODEL, user_),
         EQ(ropeDAO.CHECKED, true)

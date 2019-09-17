@@ -30,10 +30,6 @@ foam.CLASS({
       class: 'String'
     }, 
     {
-      name: 'isRelationship',
-      class: 'Boolean'
-    },
-    {
       name: 'targetModel',
       class: 'String'
     },
