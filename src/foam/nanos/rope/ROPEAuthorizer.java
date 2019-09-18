@@ -50,7 +50,7 @@ public class ROPEAuthorizer implements Authorizer {
 
   public List<ROPECell> getMatrixColumns(X x, String operation) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
-    return ( (ArraySink) ropeDAO.where(
+    return (List<ROPECell>) ( (ArraySink) ropeDAO.where(
       AND(
         EQ(ROPECell.COLUMN, operation),
         EQ(ROPECell.TARGET_MODEL, user_),
@@ -61,14 +61,26 @@ public class ROPEAuthorizer implements Authorizer {
 
   public List<ROPECell> getRelationships(X x, List<ROPECell> targetModels) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
-    return ( (ArraySink) ropeDAO.where(
+    return (List<ROPECell>) ( (ArraySink) ropeDAO.where(
       IN(ROPECell.TARGET_MODEL, targetModels)
     ).select(new ArraySink())).getArray();
   }
 
-  public boolean checkAuthorize(X x, List<String> models) {
-    for ( String model : models ) {
+  public List<String> getModels(List<ROPECell> cells) {
+    List<String> stringModels = new List<>();
+    for ( ROPECell cell: cells ) {
+      stringModels.add(cell.getRow());
+    } 
+  }
 
+  public boolean checkAuthorize(X x, List<String> models) {
+    DAO ropeDAO = (DAO) x.get("ropeDAO");
+    for ( String model : models ) {
+      List<ROPECell> childNodes = (List<ROPECell>) ((ArraySink) ropeDAO.where(
+        EQ(ROPECell.INVERSE_RELATIONSHIP, model)
+      ).select(new ArraySink()));
+
+      List<String> subModels = getModels(childNodes);
     }
     return false;
   }

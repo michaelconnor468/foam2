@@ -30,7 +30,7 @@ foam.CLASS({
       class: 'String'
     }, 
     {
-      name: 'reverseRelationship',
+      name: 'inverseRelationship',
       class: 'String'
     },
     {
