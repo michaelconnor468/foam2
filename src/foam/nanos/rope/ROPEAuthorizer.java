@@ -10,7 +10,6 @@ import foam.core.FObject;
 import foam.core.X;
 import foam.dao.DAO;
 import foam.dao.ArraySink;
-import foam.nanos.auth.AuthService;
 import foam.nanos.auth.AuthorizationException;
 import foam.nanos.auth.Authorizer;
 import foam.nanos.auth.User;
@@ -50,7 +49,17 @@ public class ROPEAuthorizer implements Authorizer {
 
   public boolean checkAuthorize(X x, String targetModel, String operation) {
     List<ROPECell> sourceColumns = getMatrixColumns(x, targetModel, operation);
+    for ( ROPECell cell : sourceColumns ) {
+      DAO relationshipDAO = cell.getJunctionDAOKey() != null ? x.get(cell.getJunctionDAOKey()) : x.get(cell.getSourceDAOKey());
+      /*List<FObject> relatedObjects = ( (ArraySink) relationshipDAO.where(
 
+      )).getArray();
+      if ( recursiveCheck(x, cell.getRow(), ) ) return true;*/
+    }
+    return false;
+  }
+
+  public boolean recursiveCheck(X x, String targetModel, List<String> targetIds) {
     return false;
   }
 
@@ -71,10 +80,6 @@ public class ROPEAuthorizer implements Authorizer {
       stringModels.add(cell.getRow());
     } 
     return stringModels;
-  }
-
-  public boolean recursiveFind(FObject searchStartObject, FObject searchTarget) {
-    return false;
   }
 
   public boolean checkGlobalRead(X x) {
