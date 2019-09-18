@@ -48,6 +48,7 @@ public class ROPEAuthorizer implements Authorizer {
     if ( true ) throw new AuthorizationException();
   }
 
+  // TEMP_COMMENT address step 1, 2, and 3
   public List<ROPECell> getMatrixColumns(X x, String operation) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
     return (List<ROPECell>) ( (ArraySink) ropeDAO.where(
@@ -58,6 +59,7 @@ public class ROPEAuthorizer implements Authorizer {
       )
     ).select(new ArraySink())).getArray();
   }
+
 
   public List<ROPECell> getRelationships(X x, List<ROPECell> targetModels) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
