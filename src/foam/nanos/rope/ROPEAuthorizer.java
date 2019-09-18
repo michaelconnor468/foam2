@@ -30,22 +30,22 @@ public class ROPEAuthorizer implements Authorizer {
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-
+    if ( true ) throw new AuthorizationException();
   }
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-
+    if ( true ) throw new AuthorizationException();
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-
+    if ( true ) throw new AuthorizationException();
   }
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-
+    if ( true ) throw new AuthorizationException();
   }
 
   public List<ROPECell> getMatrixColumns(X x, String operation) {
