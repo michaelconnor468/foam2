@@ -30,31 +30,36 @@ public class ROPEAuthorizer implements Authorizer {
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( true ) throw new AuthorizationException();
+    if ( ! checkAuthorize(x, targetModel, "C") ) throw new AuthorizationException();
   }
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( true ) throw new AuthorizationException();
+    if ( ! checkAuthorize(x, targetModel, "R") ) throw new AuthorizationException();
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
-    String targetModel = obj.getClassInfo().getId();
-    if ( true ) throw new AuthorizationException();
+    String targetModel = oldObj.getClassInfo().getId();
+    if ( ! checkAuthorize(x, targetModel, "U") ) throw new AuthorizationException();
   }
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( true ) throw new AuthorizationException();
+    if ( ! checkAuthorize(x, targetModel, "D") ) throw new AuthorizationException();
   }
 
-  // TEMP_COMMENT address step 1, 2, and 3
-  public List<ROPECell> getMatrixColumns(X x, String operation) {
+  public boolean checkAuthorize(X x, String targetModel, String operation) {
+    List<ROPECell> sourceColumns = getMatrixColumns(x, targetModel, operation);
+
+    return false;
+  }
+
+  public List<ROPECell> getMatrixColumns(X x, String targetModel, String operation) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
     return (List<ROPECell>) ( (ArraySink) ropeDAO.where(
       AND(
         EQ(ROPECell.COLUMN, operation),
-        EQ(ROPECell.TARGET_MODEL, user_),
+        EQ(ROPECell.TARGET_MODEL, targetModel),
         EQ(ROPECell.CHECKED, true)
       )
     ).select(new ArraySink())).getArray();
@@ -66,18 +71,6 @@ public class ROPEAuthorizer implements Authorizer {
       stringModels.add(cell.getRow());
     } 
     return stringModels;
-  }
-
-  public boolean checkAuthorize(X x, List<String> models) {
-    DAO ropeDAO = (DAO) x.get("ropeDAO");
-    for ( String model : models ) {
-      List<ROPECell> childNodes = (List<ROPECell>) ((ArraySink) ropeDAO.where(
-        EQ(ROPECell.INVERSE_RELATIONSHIP, model)
-      ).select(new ArraySink()));
-
-      List<String> subModels = getModels(childNodes);
-    }
-    return false;
   }
 
   public boolean recursiveFind(FObject searchStartObject, FObject searchTarget) {
