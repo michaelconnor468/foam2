@@ -9,6 +9,7 @@ package foam.nanos.rope;
 import foam.core.FObject;
 import foam.core.X;
 import foam.dao.DAO;
+import foam.dao.ArraySink;
 import foam.nanos.auth.AuthService;
 import foam.nanos.auth.AuthorizationException;
 import foam.nanos.auth.Authorizer;
@@ -29,58 +30,47 @@ public class ROPEAuthorizer implements Authorizer {
 
   public void authorizeOnCreate(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( ! relationshipTreeSearch(targetModel, "C") ) throw new AuthorizationException("You don't have permission to create this object");
+
   }
 
   public void authorizeOnRead(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( ! relationshipTreeSearch(targetModel, "R") ) throw new AuthorizationException("You don't have permission to create this object");
+
   }
 
   public void authorizeOnUpdate(X x, FObject oldObj, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( ! relationshipTreeSearch(targetModel, "U") ) throw new AuthorizationException("You don't have permission to create this object");
+
   }
 
   public void authorizeOnDelete(X x, FObject obj) throws AuthorizationException {
     String targetModel = obj.getClassInfo().getId();
-    if ( ! relationshipTreeSearch(targetModel, "D") ) throw new AuthorizationException("You don't have permission to create this object");
+
   }
 
   public List<ROPECell> getMatrixColumns(X x, String operation) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
-    return ropeDAO.where(
+    return ( (ArraySink) ropeDAO.where(
       AND(
-        EQ(ropeDAO.COLUMN, operation),
-        EQ(ropeDAO.TARGET_MODEL, user_),
-        EQ(ropeDAO.CHECKED, true)
+        EQ(ROPECell.COLUMN, operation),
+        EQ(ROPECell.TARGET_MODEL, user_),
+        EQ(ROPECell.CHECKED, true)
       )
-    ).select();
+    ).select(new ArraySink())).getArray();
   }
 
   public List<ROPECell> getRelationships(X x, List<ROPECell> targetModels) {
     DAO ropeDAO = (DAO) x.get("ropeDAO");
-    return ropeDAO.where(
-      AND(
-        EQ(ropeDAO.IS_RELATIONSHIP, true),
-        IN(ropeDAO.TARGET_MODEL, targetModels)
-      )
-    ).select();
+    return ( (ArraySink) ropeDAO.where(
+      IN(ROPECell.TARGET_MODEL, targetModels)
+    ).select(new ArraySink())).getArray();
   }
 
-  /**
-   * Checks to see if the current user is authorized to perform a particular action
-   * 
-   * @param searchList - list of all columns for a particular model
-   */
-  public boolean checkAuthorize(X x, String operation) {
-    String sourceModel = null;
-    DAO relationshipDAO = null;
-    List<ROPECell> searchList = getRelationships(x, getMatrixColumns(x, operation));
-
-    for ( ROPECell cell : searchList ) {
+  public boolean checkAuthorize(X x, List<String> models) {
+    for ( String model : models ) {
 
     }
+    return false;
   }
 
   public boolean recursiveFind(FObject searchStartObject, FObject searchTarget) {
