@@ -60,14 +60,6 @@ public class ROPEAuthorizer implements Authorizer {
     ).select(new ArraySink())).getArray();
   }
 
-
-  public List<ROPECell> getRelationships(X x, List<ROPECell> targetModels) {
-    DAO ropeDAO = (DAO) x.get("ropeDAO");
-    return (List<ROPECell>) ( (ArraySink) ropeDAO.where(
-      IN(ROPECell.TARGET_MODEL, targetModels)
-    ).select(new ArraySink())).getArray();
-  }
-
   public List<String> getModels(List<ROPECell> cells) {
     List<String> stringModels = new ArrayList<String>();
     for ( ROPECell cell: cells ) {
