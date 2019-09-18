@@ -67,10 +67,11 @@ public class ROPEAuthorizer implements Authorizer {
   }
 
   public List<String> getModels(List<ROPECell> cells) {
-    List<String> stringModels = new List<>();
+    List<String> stringModels = new ArrayList<String>();
     for ( ROPECell cell: cells ) {
       stringModels.add(cell.getRow());
     } 
+    return stringModels;
   }
 
   public boolean checkAuthorize(X x, List<String> models) {
