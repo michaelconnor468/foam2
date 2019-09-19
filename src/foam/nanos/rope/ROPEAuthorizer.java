@@ -50,7 +50,8 @@ public class ROPEAuthorizer implements Authorizer {
   public boolean checkAuthorize(X x, String targetModel, String operation) {
     List<ROPECell> sourceColumns = getMatrixColumns(x, targetModel, operation);
     for ( ROPECell cell : sourceColumns ) {
-      DAO relationshipDAO = cell.getJunctionDAOKey() != null ? x.get(cell.getJunctionDAOKey()) : x.get(cell.getSourceDAOKey());
+      DAO relationshipDAO = cell.getJunctionDAOKey() != null ? (DAO) x.get(cell.getJunctionDAOKey()) : (DAO) x.get(cell.getSourceDAOKey());
+      //SOURCE_ID TARGET_ID
       /*List<FObject> relatedObjects = ( (ArraySink) relationshipDAO.where(
 
       )).getArray();
