@@ -80,7 +80,7 @@ foam.RELATIONSHIP({
   cardinality: '*:*',
   sourceModel: 'foam.nanos.rope.test.ROPEUser',
   targetModel: 'foam.nanos.rope.test.ROPEUser',
-  forwardName: 'parteners',
+  forwardName: 'partners',
   inverseName: 'partnered',
   junctionDAOKey: 'ropePartnerJunctionDAO'
 });
