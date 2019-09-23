@@ -126,7 +126,7 @@ foam.RELATIONSHIP({
   sourceModel: 'foam.nanos.rope.test.ROPEBankAccount',
   targetModel: 'foam.nanos.rope.test.ROPETransaction',
   forwardName: 'credits',
-  inverseName: 'sourceAccount',
+  inverseName: 'destinationAccount',
   junctionDAOKey: 'ropeTransactionDAO'
 });
 
