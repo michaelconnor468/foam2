@@ -67,30 +67,6 @@ foam.CLASS({
   ]
 });
 
-<<<<<<< HEAD
-
-// foam.RELATIONSHIP({
-//   sourceModel: 'foam.nanos.rope.test.User',
-//   targetModel: 'foam.nanos.rope.test.Business',
-//   sourceDAOKey: 'aDAO',
-//   targetDAOKey: 'bDAO',
-//   cardinality: '*:*',
-//   forwardName: 'bs',
-//   inverseName: 'as',
-//   junctionDAOKey: 'abJunctionDAO'
-// });
-
-// foam.RELATIONSHIP({
-//   sourceModel: 'foam.nanos.rope.test.User',
-//   targetModel: 'foam.nanos.rope.test.User',
-//   sourceDAOKey: 'bDAO',
-//   targetDAOKey: 'cDAO',
-//   cardinality: '*:*',
-//   forwardName: 'cs',
-//   inverseName: 'bs',
-//   junctionDAOKey: 'bcJunctionDAO'
-// });
-=======
 foam.RELATIONSHIP({
   cardinality: '*:*',
   sourceModel: 'foam.nanos.rope.test.ROPEUser',
@@ -154,4 +130,3 @@ foam.RELATIONSHIP({
   targetDAOKey: 'ropeTransactionDAO'
 });
 
->>>>>>> 03819567b3cc0710eaf88d29cc058869259a8380

@@ -92,8 +92,6 @@ p({
   "client":"{\"of\": \"foam.nanos.rope.test.ROPETransaction\"}"
 })
 
-<<<<<<< HEAD
-=======
 p{(
   "class":"foam.nanos.boot.NSpec",
   "name":"ropeAgentJunctionDAO",
@@ -237,4 +235,3 @@ p{(
     }
   """
 )}
->>>>>>> 03819567b3cc0710eaf88d29cc058869259a8380
