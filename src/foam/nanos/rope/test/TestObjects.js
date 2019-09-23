@@ -86,7 +86,7 @@ foam.RELATIONSHIP({
 });
 
 foam.RELATIONSHIP({
-  cardinality: '1:*',
+  cardinality: '*:*',
   sourceModel: 'foam.nanos.rope.test.ROPEUser',
   targetModel: 'foam.nanos.rope.test.ROPEUser',
   forwardName: 'contacts',
