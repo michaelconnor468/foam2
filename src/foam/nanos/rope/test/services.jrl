@@ -4,7 +4,8 @@ p({
   "name":"ropeDAO",
   "serve":true,
   "lazy":false,
-  "serviceScript":"""
+  "serviceScript":
+  """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.ROPE.getOwnClassInfo())
       .setJournalType(foam.dao.JournalType.SINGLE_JOURNAL)
@@ -21,7 +22,8 @@ p({
   "name":"ropeUserDAO",
   "serve":true,
   "lazy":false,
-  "serviceScript":"""
+  "serviceScript":
+  """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.test.ROPEUser.getOwnClassInfo())
       .setSeqNo(true)
@@ -38,7 +40,8 @@ p({
   "name":"ropeAccountDAO",
   "serve":true,
   "lazy":false,
-  "serviceScript":"""
+  "serviceScript":
+  """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.test.ROPEBankAccount.getOwnClassInfo())
       .setSeqNo(true)
@@ -56,7 +59,8 @@ p({
   "name":"ropeBusinessDAO",
   "serve":true,
   "lazy":false,
-  "serviceScript":"""
+  "serviceScript":
+  """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.test.ROPEBusiness.getOwnClassInfo())
       .setSeqNo(true)
@@ -74,7 +78,8 @@ p({
   "name":"ropeTransactionDAO",
   "serve":true,
   "lazy":false,
-  "serviceScript":"""
+  "serviceScript":
+  """
     return new foam.dao.EasyDAO.Builder(x)
       .setOf(foam.nanos.rope.test.ROPETransaction.getOwnClassInfo())
       .setSeqNo(true)
