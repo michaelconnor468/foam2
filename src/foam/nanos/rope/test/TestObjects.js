@@ -109,7 +109,7 @@ foam.RELATIONSHIP({
   targetModel: 'foam.nanos.rope.test.ROPEBankAccount',
   forwardName: 'bankaccounts',
   inverseName: 'owner',
-  junctionDAOKey: 'ropeAccountDAO'
+  targetDAOKey: 'ropeAccountDAO'
 });
 
 foam.RELATIONSHIP({
