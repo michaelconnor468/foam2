@@ -115,7 +115,6 @@ public class ROPEAuthorizer implements Authorizer {
 
       if ( rope.getCardinality().equals("*:*") ) {
 
-        Object predicateProperty = rope.getIsInverse() ? rope.getJunctionModel().getAxiomByName("sourceId") : rope.getJunctionModel().getAxiomByName("targetId");
         List<FObject> junctionObjs = getJunctionObjects(x, rope, obj);
         for ( FObject junctionObj : junctionObjs ) {
           FObject sourceObj = rope.getIsInverse() ? (FObject) sourceDAO.find(((Long)retrieveProperty(junctionObj, "get", "targetId")).longValue()) : (FObject) sourceDAO.find(((Long)retrieveProperty(junctionObj, "get", "sourceId")).longValue());
