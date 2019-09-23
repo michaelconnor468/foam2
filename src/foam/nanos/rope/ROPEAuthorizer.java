@@ -93,10 +93,10 @@ public class ROPEAuthorizer implements Authorizer {
        .getArray();
   }
 
-  public List<FObject> getJunctionObjects(ROPE rope, FObject obj) {
+  public List<FObject> getJunctionObjects(X x, ROPE rope, FObject obj) {
     Object predicateProperty = rope.getIsInverse() ? rope.getJunctionModel().getAxiomByName("sourceId") : rope.getJunctionModel().getAxiomByName("targetId");
 
-    return ((ArraySink) x.get(rope.getJunctionDAOKey())
+    return ((ArraySink) ( (DAO) x.get(rope.getJunctionDAOKey()))
     .where(
       EQ(predicateProperty, (Long) retrieveProperty(obj, "get", "id"))
     )
@@ -116,7 +116,7 @@ public class ROPEAuthorizer implements Authorizer {
       if ( rope.getCardinality().equals("*:*") ) {
 
         Object predicateProperty = rope.getIsInverse() ? rope.getJunctionModel().getAxiomByName("sourceId") : rope.getJunctionModel().getAxiomByName("targetId");
-        List<FObject> junctionObjs = getJunctionObjects(rope, obj);
+        List<FObject> junctionObjs = getJunctionObjects(x, rope, obj);
         for ( FObject junctionObj : junctionObjs ) {
           FObject sourceObj = rope.getIsInverse() ? (FObject) sourceDAO.find(((Long)retrieveProperty(junctionObj, "get", "targetId")).longValue()) : (FObject) sourceDAO.find(((Long)retrieveProperty(junctionObj, "get", "sourceId")).longValue());
           sourceObjs.add(sourceObj);
