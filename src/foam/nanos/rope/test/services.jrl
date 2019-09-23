@@ -183,7 +183,7 @@ p{(
   "client":
   """
     {
-      "of": "foam.nanos.rope.test.ROPEUserROPEUserJunction"
+      "of": "foam.nanos.rope.test.ROPEBusinessROPEUserJunction"
     }
   """
 )}
