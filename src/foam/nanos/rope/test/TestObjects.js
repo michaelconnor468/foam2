@@ -129,3 +129,4 @@ foam.RELATIONSHIP({
   inverseName: 'sourceAccount',
   junctionDAOKey: 'ropeTransactionDAO'
 });
+
