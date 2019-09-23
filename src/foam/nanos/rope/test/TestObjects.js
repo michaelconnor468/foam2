@@ -118,7 +118,7 @@ foam.RELATIONSHIP({
   targetModel: 'foam.nanos.rope.test.ROPETransaction',
   forwardName: 'debits',
   inverseName: 'sourceAccount',
-  junctionDAOKey: 'ropeTransactionDAO'
+  targetDAOKey: 'ropeTransactionDAO'
 });
 
 foam.RELATIONSHIP({
