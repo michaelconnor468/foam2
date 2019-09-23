@@ -77,7 +77,7 @@ public class ROPEAuthorizer implements Authorizer {
     */ 
   public List<ROPE> getTargetRopes(FObject obj) {
     if ( obj instanceof User )
-      return (List<ROPE>) ((ArraySink) this.ropeDAO_
+      return (List<ROPE>) ( (ArraySink) this.ropeDAO_
         .where(
           AND(
             EQ(ROPE.TARGET_MODEL, obj.getClassInfo()),
